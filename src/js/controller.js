@@ -12,9 +12,6 @@ import paginationView from './views/paginationView.js';
 import bookmarkView from './views/bookmarkView.js';
 import addRecipeView from './views/addRecipeView.js';
 
-// if (module.hot) {
-//   module.hot.accept();
-// }
 const controlRecipes = async function () {
   try {
     const id = window.location.hash.slice(1);
@@ -24,15 +21,14 @@ const controlRecipes = async function () {
     //update result view to mark selected search results
     resultView.update(modal.getSearchResultPage());
     //updating bookmark view
-    // bookmarkView.update(modal.state.bookmarks);
+
     //1 loading reciepe
     await modal.loadRecipe(id);
     //2rendering reciepe
 
     recipeview.render(modal.state.recipe);
-    // const recipeView = new recipeview(modal.state.recipe)
+
     //TEST
-    // controlServings();
   } catch (err) {
     // alert(err);
     recipeview.renderError();
@@ -100,9 +96,7 @@ const controlAddRecipe = async function (newRecipe) {
     //change ID in URL
     window.history.pushState(null, '', `#${modal.state.recipe.id}`);
     //close form
-    setTimeout(function () {
-      // addRecipeView.toggleWindow();
-    }, MODAL_CLOSE_SEC);
+    setTimeout(function () {}, MODAL_CLOSE_SEC);
   } catch (err) {
     console.error(err);
     addRecipeView.renderError(err.message);
